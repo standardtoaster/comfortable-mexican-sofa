@@ -211,7 +211,7 @@ class CmsAdmin::PagesControllerTest < ActionController::TestCase
     page = cms_pages(:default)
     get :edit, :site_id => page.site, :id => page
     assert_response 302
-    assert_match 'not authorized', flash[:error]
+    assert_match 'Page not found', flash[:error]
   end
 
   def test_get_edit_failure

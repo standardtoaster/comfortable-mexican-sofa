@@ -10,7 +10,7 @@ class FixturesTest < ActiveSupport::TestCase
     Cms::Snippet.destroy_all
     
     assert_difference 'Cms::Layout.count', 2 do
-      assert_difference 'Cms::Page.count', 2 do
+      assert_difference 'Cms::Page.count', 3 do
         assert_difference 'Cms::Snippet.count', 1 do
           ComfortableMexicanSofa::Fixture::Importer.new('sample-site', 'default-site').import!
         end

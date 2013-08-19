@@ -144,7 +144,7 @@ class Cms::Page < ActiveRecord::Base
       self,
       ComfortableMexicanSofa::Tag.sanitize_irb(layout.merged_head(self))
     )
-    @tags ||= []
+    @head_tags ||= []
   end
   
   # Full url for a page

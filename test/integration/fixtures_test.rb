@@ -26,7 +26,7 @@ class FixturesTest < ActionDispatch::IntegrationTest
     Cms::Page.destroy_all
     Cms::Snippet.destroy_all
     
-    assert_difference 'Cms::Page.count', 2 do
+    assert_difference 'Cms::Page.count', 3 do
       assert_difference 'Cms::Layout.count', 2 do
         assert_difference 'Cms::Snippet.count', 1 do
           get '/'
@@ -38,7 +38,7 @@ class FixturesTest < ActionDispatch::IntegrationTest
           assert_equal 'Default Fixture Layout', Cms::Layout.find_by_identifier('default').label
           assert_equal 'Default Fixture Snippet', Cms::Snippet.find_by_identifier('default').label
           
-          assert_equal "<html>\n  <body>\n    <div class='left'> Child Page Left Fixture Content </div>\n<div class='right'> Child Page Right Fixture Content </div>\n  </body>\n</html>", response.body
+          assert_equal "<html>\n  <body>\n    <div class='left'> Child Page Left Fixture Content </div>\n<div class='right'> Child Page Right Fixture Content </div>\n  </body>\n</html>\n", response.body
         end
       end
     end
@@ -50,7 +50,7 @@ class FixturesTest < ActionDispatch::IntegrationTest
     Cms::Page.destroy_all
     Cms::Snippet.destroy_all
     
-    assert_difference 'Cms::Page.count', 2 do
+    assert_difference 'Cms::Page.count', 3 do
       assert_difference 'Cms::Layout.count', 2 do
         assert_difference 'Cms::Snippet.count', 1 do
            http_auth :get, "/cms-admin/sites/#{cms_sites(:default).id}/pages"

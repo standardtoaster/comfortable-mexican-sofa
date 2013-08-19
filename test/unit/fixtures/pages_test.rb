@@ -13,7 +13,7 @@ class FixturePagesTest < ActiveSupport::TestCase
     nested = cms_layouts(:nested)
     nested.update_column(:content, '<html>{{cms:page:left}}<br/>{{cms:page:right}}</html>')
     
-    assert_difference 'Cms::Page.count', 2 do
+    assert_difference 'Cms::Page.count', 3 do
       ComfortableMexicanSofa::Fixture::Page::Importer.new('sample-site', 'default-site').import!
       
       assert page = Cms::Page.where(:full_path => '/').first
