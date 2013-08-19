@@ -6,11 +6,12 @@ end
 namespace :comfortable_mexican_sofa do
   namespace :fixtures do
     
-    desc 'Import Fixture data into database (options: FROM=folder_name TO=site_identifier)'
+    desc 'Import Fixture data into database (options: FROM=folder_name TO=site_identifier FORCE=true|false)'
     
     task :import => :environment do
       from  = ENV['FROM']
       to    = ENV['TO'] || ENV['FROM']
+      force = ENV["FORCE"] == "true" ? :force : false
       
       puts "Importing CMS Fixtures from Folder [#{from}] to Site [#{to}] ..."
       
@@ -18,7 +19,7 @@ namespace :comfortable_mexican_sofa do
       logger = ComfortableMexicanSofa.logger
       ComfortableMexicanSofa.logger = Logger.new(STDOUT)
       
-      ComfortableMexicanSofa::Fixture::Importer.new(from, to, :force).import!
+      ComfortableMexicanSofa::Fixture::Importer.new(from, to, force).import!
       
       ComfortableMexicanSofa.logger = logger
     end
