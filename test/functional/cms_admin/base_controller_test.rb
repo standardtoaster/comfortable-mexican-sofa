@@ -1,4 +1,4 @@
-require File.expand_path('../../test_helper', File.dirname(__FILE__))
+require_relative '../../test_helper'
 
 class CmsAdmin::BaseControllerTest < ActionController::TestCase
   def test_get_jump

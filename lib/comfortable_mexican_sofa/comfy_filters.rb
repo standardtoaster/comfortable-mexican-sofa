@@ -18,7 +18,7 @@ module ComfyFilters
 
       def load_fixtures
         return unless ComfortableMexicanSofa.config.enable_fixtures
-        ComfortableMexicanSofa::Fixtures.import_all(@cms_site.identifier)
+        ComfortableMexicanSofa::Fixture::Importer.new(@cms_site.identifier).import!
       end
       
       def load_cms_site
@@ -57,8 +57,7 @@ module ComfyFilters
       rescue ActiveRecord::RecordNotFound
         render :nothing => true, :status => 404
       end
+
     end
   end
 end
-
-ActionController::Base.send :include, ComfyFilters

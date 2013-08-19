@@ -28,5 +28,4 @@ class CmsContentController < ApplicationController
     render :text => @cms_layout.js, :content_type => 'text/javascript'
   end
 
-
 end
