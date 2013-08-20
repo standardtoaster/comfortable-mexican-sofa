@@ -22,7 +22,7 @@ module ComfortableMexicanSofa::Fixture::Page
             page.label          = attrs['label']
             page.layout         = site.layouts.where(:identifier => attrs['layout']).first || parent.try(:layout)
             page.is_published   = attrs['is_published'].nil?? true : attrs['is_published']
-            page.include_in_nav = attrs[:include_in_nav].nil? ? true : attrs[:include_in_nav]
+            page.include_in_nav = attrs['include_in_nav'].nil? ? true : attrs['include_in_nav']
             page.position       = attrs['position'] if attrs['position']
             
             categories          = attrs['categories']
