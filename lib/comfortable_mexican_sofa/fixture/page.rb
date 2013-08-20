@@ -19,12 +19,13 @@ module ComfortableMexicanSofa::Fixture::Page
           if fresh_fixture?(page, attrs_path)
             attrs = get_attributes(attrs_path)
             
-            page.label        = attrs['label']
-            page.layout       = site.layouts.where(:identifier => attrs['layout']).first || parent.try(:layout)
-            page.is_published = attrs['is_published'].nil?? true : attrs['is_published']
-            page.position     = attrs['position'] if attrs['position']
+            page.label          = attrs['label']
+            page.layout         = site.layouts.where(:identifier => attrs['layout']).first || parent.try(:layout)
+            page.is_published   = attrs['is_published'].nil?? true : attrs['is_published']
+            page.include_in_nav = attrs[:include_in_nav].nil? ? true : attrs[:include_in_nav]
+            page.position       = attrs['position'] if attrs['position']
             
-            categories        = attrs['categories']
+            categories          = attrs['categories']
             
             if attrs['target_page']
               self.target_pages ||= {}
