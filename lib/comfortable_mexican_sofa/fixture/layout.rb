@@ -19,6 +19,11 @@ module ComfortableMexicanSofa::Fixture::Layout
         end
         
         # setting content
+        if File.exists?(content_path = File.join(path, 'head.html'))
+          if fresh_fixture?(layout, content_path)
+            layout.head = File.open(content_path).read
+          end
+        end
         if File.exists?(content_path = File.join(path, 'content.html'))
           if fresh_fixture?(layout, content_path)
             layout.content = File.open(content_path).read
@@ -75,6 +80,9 @@ module ComfortableMexicanSofa::Fixture::Layout
         end
         open(File.join(layout_path, 'content.html'), 'w') do |f|
           f.write(layout.content)
+        end
+        open(File.join(layout_path, 'head.html'), 'w') do |f|
+          f.write(layout.head)
         end
         open(File.join(layout_path, 'stylesheet.css'), 'w') do |f|
           f.write(layout.read_attribute(:css))
