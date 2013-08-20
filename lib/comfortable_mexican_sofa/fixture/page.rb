@@ -101,13 +101,14 @@ module ComfortableMexicanSofa::Fixture::Page
 
         open(File.join(page_path, 'attributes.yml'), 'w') do |f|
           f.write({
-            'label'         => page.label,
-            'layout'        => page.layout.try(:identifier),
-            'parent'        => page.parent && (page.parent.slug.present?? page.parent.slug : 'index'),
-            'target_page'   => page.target_page.try(:full_path),
-            'categories'    => page.categories.map{|c| c.label},
-            'is_published'  => page.is_published,
-            'position'      => page.position
+            'label'          => page.label,
+            'layout'         => page.layout.try(:identifier),
+            'parent'         => page.parent && (page.parent.slug.present?? page.parent.slug : 'index'),
+            'target_page'    => page.target_page.try(:full_path),
+            'categories'     => page.categories.map{|c| c.label},
+            'is_published'   => page.is_published,
+            'include_in_nav' => page.include_in_nav?,
+            'position'       => page.position
           }.to_yaml)
         end
         page.blocks_attributes.each do |block|
