@@ -61,3 +61,5 @@ module ComfyFilters
     end
   end
 end
+
+ActionController::Base.send :include, ComfyFilters
