@@ -59,6 +59,7 @@ module ComfortableMexicanSofa::Fixture::Page
         
         # saving
         if page.changed? || self.force_import
+          page.updated_at = Time.now
           if page.save
             save_categorizations!(page, categories)
             ComfortableMexicanSofa.logger.warn("[FIXTURES] Imported Page \t #{page.full_path}")

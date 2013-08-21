@@ -42,6 +42,7 @@ module ComfortableMexicanSofa::Fixture::Layout
         
         # saving
         if layout.changed? || self.force_import
+          layout.updated_at = Time.now
           if layout.save
             ComfortableMexicanSofa.logger.warn("[FIXTURES] Imported Layout \t #{layout.identifier}")
           else
