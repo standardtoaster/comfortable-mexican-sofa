@@ -11,9 +11,11 @@ module ComfortableMexicanSofa::Fixture
     def initialize(from, to = from, force_import = false)
       self.from         = from
       self.to           = to
-      self.site         = Cms::Site.where(:identifier => to).first!
+      self.site         = Cms::Site.where(:identifier => to).first
       self.fixture_ids  = []
       self.force_import = force_import
+
+      raise "Site with identifier #{to} not found." unless self.site
       
       dir = self.class.name.split('::')[2].downcase.pluralize
       self.path = ::File.join(ComfortableMexicanSofa.config.fixtures_path, from, dir, '/')
