@@ -13,8 +13,7 @@ class ComfortableMexicanSofa::Tag::Link
     # Find the one with the shortest full_path (more likely to be a direct
     # match). TODO: Order the results in the SQL query instead?
     if pages.length > 0
-      page = pages.to_a.sort{|a, b| a.full_path.length <=> b.full_path.length }.first
-      "/#{page.site.path}/#{page.full_path}".squeeze("/")
+      page = pages.to_a.sort{|a, b| a.full_path.length <=> b.full_path.length }.first.relative_url
     else
       ""
     end

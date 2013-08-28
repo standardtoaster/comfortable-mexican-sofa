@@ -151,6 +151,11 @@ class Cms::Page < ActiveRecord::Base
   def url
     "http://" + "#{self.site.hostname}/#{self.site.path}/#{self.full_path}".squeeze("/")
   end
+
+  # Relative URL for a page
+  def relative_url
+    "#{self.site.path}/#{self.full_path}".squeeze("/")
+  end
   
   # Method to collect prevous state of blocks for revisions
   def blocks_attributes_was
