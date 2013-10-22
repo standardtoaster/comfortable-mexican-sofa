@@ -119,17 +119,22 @@ class Cms::Page < ActiveRecord::Base
   # self.cms_tags with instances of CmsTag
   def content(force_reload = false)
     @content = force_reload ? nil : read_attribute(:content)
-    @content ||= begin
-      self.tags = [] # resetting
-      if layout
-        ComfortableMexicanSofa::Tag.process_content(
-          self,
-          ComfortableMexicanSofa::Tag.sanitize_irb(layout.merged_content)
-        )
-      else
-        ''
+    if !@content
+      @content ||= begin
+        self.tags = [] # resetting
+        if layout
+          ComfortableMexicanSofa::Tag.process_content(
+            self,
+            ComfortableMexicanSofa::Tag.sanitize_irb(layout.merged_content)
+          )
+        else
+          ''
+        end
       end
+      # Bypass callbacks.
+      update_column(:content, @content) unless self.new_record?
     end
+    @content
   end
 
   # Array of cms_tags for a page. Content generation is called if forced.
