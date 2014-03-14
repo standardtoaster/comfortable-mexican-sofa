@@ -14,6 +14,7 @@ require 'devise'
 require 'cancan'
 require 'codemirror-rails'
 require 'kaminari'
+require 'mercury-rails'
 
 module ComfortableMexicanSofa
   class Engine < ::Rails::Engine
