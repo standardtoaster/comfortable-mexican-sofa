@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require jquery.ui.all
+#= require jquery-ui
 #= require codemirror
 #= require codemirror/modes/css
 #= require codemirror/modes/htmlmixed
@@ -59,7 +59,6 @@ window.CMS.wysiwyg = ->
       html:         true
       color:        false
       stylesheets:  []
-
 
 window.CMS.codemirror = ->
   $('textarea[data-cm-mode]').each (i, element) ->
